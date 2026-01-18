@@ -1,0 +1,96 @@
+/* ==========================================================================
+   Locomotive Scroll – Base Required Styles
+   ========================================================================== */
+
+html.has-scroll-smooth {
+    overflow: hidden;
+    height: 100%;
+}
+
+.has-scroll-smooth body {
+    overflow: hidden;
+    height: 100%;
+}
+
+/* Main scroll container – must have min-height */
+[data-scroll-container] {
+    min-height: 100vh;
+    will-change: transform;
+}
+
+/* Horizontal scrolling variant (if you ever need it) */
+[data-scroll-direction="horizontal"] [data-scroll-container] {
+    height: 100vh;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   Custom Scrollbar (very popular modern look)
+   ========================================================================== */
+
+.c-scrollbar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 10px;
+    height: 100vh;
+    transform-origin: center right;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.c-scrollbar:hover {
+    transform: scaleX(1.4);
+    opacity: 1;
+}
+
+/* Show on scroll / drag */
+.has-scroll-scrolling .c-scrollbar,
+.has-scroll-dragging .c-scrollbar,
+.c-scrollbar:hover {
+    opacity: 1;
+}
+
+/* Horizontal version */
+[data-scroll-direction="horizontal"] .c-scrollbar {
+    width: 100%;
+    height: 8px;
+    top: auto;
+    bottom: 0;
+}
+
+[data-scroll-direction="horizontal"] .c-scrollbar:hover {
+    transform: scaleY(1.6);
+}
+
+.c-scrollbar_thumb {
+    position: absolute;
+    top: 0;
+    right: 1px;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0.6;
+    width: 8px;
+    border-radius: 10px;
+    margin: 2px 0;
+    transition: background-color 0.3s ease;
+    cursor: grab;
+}
+
+.has-scroll-dragging .c-scrollbar_thumb {
+    cursor: grabbing;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+/* Optional: nicer dark mode scrollbar */
+@media (prefers-color-scheme: dark) {
+    .c-scrollbar_thumb {
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .has-scroll-dragging .c-scrollbar_thumb {
+        background-color: rgba(255, 255, 255, 0.75);
+    }
+}
